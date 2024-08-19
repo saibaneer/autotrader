@@ -81,6 +81,7 @@ const bar = async function(numberOfTraders: number) {
     }
     
     console.log("All trades have been placed. Exiting process.");
+    process.exit(1)
 };
 
 // Example usage
