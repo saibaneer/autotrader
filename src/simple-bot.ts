@@ -45,9 +45,10 @@ const sleepFor10mins = function(): Promise<void> {
 
 const bar = async function(numberOfTraders: number) {
     const availableTraders = generateTraders(numberOfTraders);
+    let betHolder = 0; // Index for trade slug
 
-    // Loop through each trade slug
-    for (let betHolder = 0; betHolder < randomTradeSlugs.length; betHolder++) {
+    // Use while loop to iterate over trade slugs until all have been processed
+    while (betHolder < randomTradeSlugs.length) {
         const slug = randomTradeSlugs[betHolder];
         const market = await getMarketBySlug(slug);
         
@@ -74,34 +75,13 @@ const bar = async function(numberOfTraders: number) {
         console.log("Sleeping for 10 minutes...");
         await sleepFor10mins();
         console.log("10 minutes have passed!");
+
+        // Increment betHolder to move to the next slug
+        betHolder++;
     }
+    
+    console.log("All trades have been placed. Exiting process.");
 };
 
 // Example usage
 bar(2); // Pass the number of traders
-
-// const foo = async function (username: string, key: string, amount: number) {
-//   if (!username) throw new Error("Set Username");
-//   if (!key) throw new Error("Set Api key ");
-//   //   if (!slug) throw new Error("choose topic!");
-
-//   console.log("Let's get a random market");
-//   const slug = getRandomSlug();
-//   const market = await getMarketBySlug(randomTradeSlugs[slug]);
-//   //   const {id, outcomeType } = await getMarketBySlug(slug);
-//   console.log(market);
-
-//   console.log("Placing bet!");
-//   //TO DO: Make a makeBet function for binary bets
-//   const newBet = makeBet(market.id, "YES", amount);
-// //   const newBet = {
-// //     contractId: market.id,
-// //     outcome: "YES" as "YES" | "NO",
-// //     amount: amount,
-// //   };
-//   const betPlaced = await placeBet(newBet);
-
-//   console.log(betPlaced);
-// };
-
-// foo(username, key, 1);
