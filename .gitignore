@@ -2,5 +2,5 @@ node_modules
 .env
 
 
-src/constants.ts
+# src/constants.ts
 src/test.ts
