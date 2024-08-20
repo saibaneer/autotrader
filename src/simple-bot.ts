@@ -43,7 +43,7 @@ const sleepFor10mins = function(): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, 10 * 60 * 1000)); // 10 minutes in milliseconds
 };
 
-const bar = async function(numberOfTraders: number) {
+const executeTrades = async function(numberOfTraders: number) {
     const availableTraders = generateTraders(numberOfTraders);
     let betHolder = 0; // Index for trade slug
 
@@ -84,5 +84,5 @@ const bar = async function(numberOfTraders: number) {
     process.exit(1)
 };
 
-// Example usage
-bar(2); // Pass the number of traders
+
+executeTrades(2); // Pass the number of traders
